@@ -7,6 +7,7 @@ import java.util.stream.Collectors;
 import com.jfb.macripoint.dto.CategoryDTO;
 import com.jfb.macripoint.entities.Category;
 import com.jfb.macripoint.repository.CategoryRepository;
+import com.jfb.macripoint.services.exceptions.EntityNotFoundException;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -28,7 +29,7 @@ public class CategoryService {
   @Transactional(readOnly = true)
   public CategoryDTO findById(Long id) {
     Optional<Category> obj = repository.findById(id);
-    Category entity = obj.get();
+    Category entity = obj.orElseThrow(() -> new EntityNotFoundException("Entidade não encontrada!"));
     return new CategoryDTO(entity);
   }
 
