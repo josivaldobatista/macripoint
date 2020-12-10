@@ -1,6 +1,7 @@
 package com.jfb.macripoint.services;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 import com.jfb.macripoint.dto.CategoryDTO;
@@ -14,14 +15,21 @@ import org.springframework.transaction.annotation.Transactional;
 @Service
 public class CategoryService {
 
-    @Autowired
-    private CategoryRepository repository;
-    
-    @Transactional(readOnly = true)
-    public List<CategoryDTO> findAll() {
-        List<Category> list = repository.findAll(); 
-        List<CategoryDTO> listDto = list.stream().map(cat -> new CategoryDTO(cat))
-            .collect(Collectors.toList());
-        return listDto;
-    }
+  @Autowired
+  private CategoryRepository repository;
+
+  @Transactional(readOnly = true)
+  public List<CategoryDTO> findAll() {
+    List<Category> list = repository.findAll();
+    List<CategoryDTO> listDto = list.stream().map(cat -> new CategoryDTO(cat)).collect(Collectors.toList());
+    return listDto;
+  }
+
+  @Transactional(readOnly = true)
+  public CategoryDTO findById(Long id) {
+    Optional<Category> obj = repository.findById(id);
+    Category entity = obj.get();
+    return new CategoryDTO(entity);
+  }
+
 }
