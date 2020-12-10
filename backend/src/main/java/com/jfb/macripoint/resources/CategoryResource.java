@@ -2,7 +2,7 @@ package com.jfb.macripoint.resources;
 
 import java.util.List;
 
-import com.jfb.macripoint.entities.Category;
+import com.jfb.macripoint.dto.CategoryDTO;
 import com.jfb.macripoint.services.CategoryService;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,8 +19,8 @@ public class CategoryResource {
     private CategoryService service;
     
     @GetMapping
-    public ResponseEntity<List<Category>> findAll() {
-        List<Category> list = service.findAll();
+    public ResponseEntity<List<CategoryDTO>> findAll() {
+        List<CategoryDTO> list = service.findAll();
         return ResponseEntity.ok().body(list);
     }
 }

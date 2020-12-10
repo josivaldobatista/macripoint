@@ -1,4 +1,4 @@
 
-INSERT INTO tb_category (name) VALUES ('Carenagem');
-INSERT INTO tb_category (name) VALUES ('Eletrônicos');
-INSERT INTO tb_category (name) VALUES ('Componentes');
+INSERT INTO tb_category (name, created_at) VALUES ('Carenagem', NOW());
+INSERT INTO tb_category (name, created_at) VALUES ('Eletrônicos', NOW());
+INSERT INTO tb_category (name, created_at) VALUES ('Componentes', NOW());

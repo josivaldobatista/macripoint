@@ -1,7 +1,9 @@
 package com.jfb.macripoint.services;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
+import com.jfb.macripoint.dto.CategoryDTO;
 import com.jfb.macripoint.entities.Category;
 import com.jfb.macripoint.repository.CategoryRepository;
 
@@ -16,7 +18,10 @@ public class CategoryService {
     private CategoryRepository repository;
     
     @Transactional(readOnly = true)
-    public List<Category> findAll() {
-        return repository.findAll();
+    public List<CategoryDTO> findAll() {
+        List<Category> list = repository.findAll(); 
+        List<CategoryDTO> listDto = list.stream().map(cat -> new CategoryDTO(cat))
+            .collect(Collectors.toList());
+        return listDto;
     }
 }
